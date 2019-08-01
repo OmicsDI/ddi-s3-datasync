@@ -1,6 +1,6 @@
 import os
 import sys
-import xml.etree.ElementTree as ET
+import xml.etree.cElementTree as ET
 
 xml_file = sys.argv[1]
 out_dir = sys.argv[2]
@@ -10,7 +10,9 @@ context = ET.iterparse(xml_file, events=('start', ))
 for event, elem in context:
     if elem.tag == 'experiments':
         release_date = elem.attrib['retrieved']
+        elem.clear()
         break
+del context
 
 context = ET.iterparse(xml_file, events=('end', ))
 for event, elem in context:
