@@ -15,5 +15,5 @@ bsub -M ${MEMORY_LIMIT} -R "rusage[mem=${MEMORY_LIMIT}]" -q ${QUEUE} -u ${JOB_EM
 
 bsub -M ${MEMORY_LIMIT} -R "rusage[mem=${MEMORY_LIMIT}]" -q ${QUEUE} -u ${JOB_EMAIL} -J ${JOB_NAME}-protocols \
     ./command.sh logs/${JOB_NAME}-protocols.$(date +"%m-%d-%Y").log \
-    "./venv/bin/python arrayexpress-splitter/experiments.py ${ARRAYEXPRESS_PROTOCOLS_FILE} ${AE_PROTOCOLS_OUT_DIR}"
+    "./venv/bin/python arrayexpress-splitter/experiments.py ${ARRAYEXPRESS_PROTOCOLS_FILE} ${AE_PROTOCOLS_OUT_DIR}" \
     "./sync.sh ${AE_PROTOCOLS_OUT_DIR} s3://${S3_BUCKET}/data/arrayexpress/protocols"
