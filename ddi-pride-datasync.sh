@@ -5,7 +5,7 @@ cd ${SCRIPT_DIR}
 source definitions.sh
 
 
-MEMORY_LIMIT=3000
+MEMORY_LIMIT=2000
 JOB_EMAIL="gdass@ebi.ac.uk"
 JOB_NAME="ddi-pride-datasync"
 
