@@ -18,8 +18,6 @@ case ${KEY} in
 esac
 done
 
-FINAL_COMMAND="{"
-
 for (( i = 0; i < ${#COMMANDS[@]} ; i++ )); do
     if [[ ${i} -eq 0 ]]; then
         `${COMMANDS[$i]} > ${OUTPUT} 2>&1`
