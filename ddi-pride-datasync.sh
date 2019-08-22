@@ -1,12 +1,11 @@
 #!/usr/bin/env bash
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
-cd ${SCRIPT_DIR}
+cd "${SCRIPT_DIR}" || exit
 source definitions.sh
 
 
 MEMORY_LIMIT=2000
-JOB_EMAIL="gdass@ebi.ac.uk"
 JOB_NAME="ddi-pride-datasync"
 
 bsub -M ${MEMORY_LIMIT} -R "rusage[mem=${MEMORY_LIMIT}]" -q ${QUEUE} -u ${JOB_EMAIL} -J ${JOB_NAME} \
