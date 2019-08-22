@@ -22,9 +22,9 @@ for event, elem in context:
         _id = elem.attrib['id']
         for dbkey in dbkeys:
             if dbkey in result:
-                result[dbkey].append(_id)
+                result[dbkey].append({'id': _id})
             else:
-                result[dbkey] = [_id]
+                result[dbkey] = [{'id': _id}]
         dbkeys.clear()
         elem.clear()
 for dbkey in result:
