@@ -7,7 +7,7 @@ import xml.etree.cElementTree as ET
 xml_file = sys.argv[1]
 out_dir = sys.argv[2]
 
-if os.path.exists(out_dir):
+if not os.path.exists(out_dir):
     os.makedirs(out_dir)
 
 context = ET.iterparse(xml_file, events=('end', ))
