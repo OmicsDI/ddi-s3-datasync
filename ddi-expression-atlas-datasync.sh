@@ -14,7 +14,8 @@ bsub -M ${MEMORY_LIMIT} -R "rusage[mem=${MEMORY_LIMIT}]" -q ${QUEUE} -u ${JOB_EM
 
 bsub -M ${MEMORY_LIMIT} -R "rusage[mem=${MEMORY_LIMIT}]" -q ${QUEUE} -u ${JOB_EMAIL} -J "${JOB_NAME}-experiments" \
     ./command.sh -o "logs/${JOB_NAME}-experiments.$(date +"%m-%d-%Y").log" \
-    "./cp.sh ${EX_ATLAS_EXPERIMENTS} s3://${S3_BUCKET}/data/expression-atlas/"
+    "./venv/bin/python expression-atlas-splitter/experiments.py ${EX_ATLAS_EXPERIMENTS} ${EX_ATLAS_EXPERIMENTS_OUTDIR}" \
+    "./sync.sh ${EX_ATLAS_EXPERIMENTS_OUTDIR} s3://${S3_BUCKET}/data/expression-atlas/experiments"
 
 bsub -M ${MEMORY_LIMIT} -R "rusage[mem=${MEMORY_LIMIT}]" -q ${QUEUE} -u ${JOB_EMAIL} -J "${JOB_NAME}-relative-genes" \
     ./command.sh -o "logs/${JOB_NAME}-relative-genes.$(date +"%m-%d-%Y").log" \
@@ -23,4 +24,5 @@ bsub -M ${MEMORY_LIMIT} -R "rusage[mem=${MEMORY_LIMIT}]" -q ${QUEUE} -u ${JOB_EM
 
 bsub -M ${MEMORY_LIMIT} -R "rusage[mem=${MEMORY_LIMIT}]" -q ${QUEUE} -u ${JOB_EMAIL} -J "${JOB_NAME}-relative-experiments" \
     ./command.sh -o "logs/${JOB_NAME}-relative-experiments.$(date +"%m-%d-%Y").log" \
-    "./cp.sh ${EX_ATLAS_RELATIVE_EXPERIMENTS} s3://${S3_BUCKET}/data/expression-atlas/"
+    "./venv/bin/python expression-atlas-splitter/experiments.py ${EX_ATLAS_RELATIVE_EXPERIMENTS} ${EX_ATLAS_RELATIVE_EXPERIMENTS_OUTDIR}" \
+    "./sync.sh ${EX_ATLAS_RELATIVE_EXPERIMENTS_OUTDIR} s3://${S3_BUCKET}/data/expression-atlas/relative-experiments"
