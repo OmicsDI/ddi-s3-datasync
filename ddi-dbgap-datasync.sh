@@ -10,4 +10,4 @@ JOB_NAME="ddi-dbgap-datasync"
 
 bsub -M ${MEMORY_LIMIT} -R "rusage[mem=${MEMORY_LIMIT}]" -q ${QUEUE} -u ${JOB_EMAIL} -J ${JOB_NAME} \
     ./command.sh -o "logs/$JOB_NAME.$(date +"%m-%d-%Y").log" \
-    "./sync.sh ${PRIDE_DATA_FOLDER} s3://${S3_BUCKET}/data/dbgap-ebi"
+    "./sync.sh ${DBGAP_DATA_FOLDER} s3://${S3_BUCKET}/data/dbgap-ebi"
